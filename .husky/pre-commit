@@ -1,0 +1,5 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# 在提交commit之前执行一次npm run lint 对提交的代码进行格式化
+npm run lint
