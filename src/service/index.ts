@@ -1,0 +1,27 @@
+import Request from './request'
+export default new Request({
+  // 根据环境变量设置baseUrl和timeOut
+  baseURL: process.env.VUE_APP_BASE_URL,
+  timeout: process.env.VUE_APP_BASE_TIMEOUT,
+
+  // 每个实例单独的拦截器
+  interceptors: {
+    requestInterceptor: (config) => {
+      console.log('请求拦截')
+
+      return config
+    },
+    requestInterceptorCatch: (err) => {
+      console.log('请求失败拦截')
+      return err
+    },
+    responseInterceptor: (res) => {
+      console.log('响应拦截')
+      return res
+    },
+    responsetInterceptorCatch: (err) => {
+      console.log('响应失败拦截')
+      return err
+    }
+  }
+})
