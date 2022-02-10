@@ -1,4 +1,4 @@
-import type { AxiosRequestConfig, AxiosResponse } from 'axios' //实例的类型/配置的类型
+import type { AxiosRequestConfig } from 'axios' //实例的类型/配置的类型
 import { LoadingInstance } from 'element-plus/lib/components/loading/src/loading'
 export interface RequestInterceptors extends AxiosRequestConfig {
   requestInterceptor?: (config: AxiosRequestConfig) => AxiosRequestConfig
