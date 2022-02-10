@@ -14,19 +14,10 @@ module.exports = {
       '@': path.resolve(__dirname, 'src'),
       views: '@/views'
     }
+  },
+  devServer: {
+    proxy: 'http://123.207.32.32'
   }
-  // ,
-  // devServer: {
-  //   proxy: {
-  //     '^/api': {
-  //       target: 'http://152.136.185.210:5000',
-  //       pathRewrite: {
-  //         '^/api': ''
-  //       },
-  //       changeOrigin: true
-  //     }
-  //   }
-  // }
   // chainWebpack: (config) => {
   //   config.resolve.alias.set('@', path.resolve(__dirname, 'src')).set('views', '@/views')
   // }
