@@ -55,7 +55,7 @@ class Request {
       }
     )
   }
-  request<T>(config: RequestConfig): Promise<T> {
+  request<T>(config: RequestConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       config.showLoading && (this.showLoading = config.showLoading)
       // 单独请求的拦截器
@@ -77,16 +77,16 @@ class Request {
         })
     })
   }
-  get<T>(config: RequestConfig): Promise<T> {
+  get<T>(config: RequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'GET' })
   }
-  post<T>(config: RequestConfig): Promise<T> {
+  post<T>(config: RequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'POST' })
   }
-  delete<T>(config: RequestConfig): Promise<T> {
+  delete<T>(config: RequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'DELETE' })
   }
-  patch<T>(config: RequestConfig): Promise<T> {
+  patch<T>(config: RequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'PATCH' })
   }
 }
