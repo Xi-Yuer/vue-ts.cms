@@ -1,5 +1,6 @@
 import Request from './request'
 import { RequestConfig } from './request/type'
+import localCache from '@/utills/cache'
 export default new Request({
   // 根据环境变量设置baseUrl和timeOut
   baseURL: process.env.VUE_APP_BASE_URL,
@@ -9,7 +10,7 @@ export default new Request({
   interceptors: {
     requestInterceptor: (config: RequestConfig) => {
       // console.log('请求拦截')
-      const token = ''
+      const token = localCache.getCache('TOKEN')
       if (token) {
         config.headers.Authorization = `Bearer ${token}`
       }

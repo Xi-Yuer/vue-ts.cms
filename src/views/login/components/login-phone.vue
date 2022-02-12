@@ -16,11 +16,17 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue'
+import { reactive, defineExpose } from 'vue'
 import { PhoneRules } from '../config/account-config'
 const account = reactive({
   phone: '',
   valid: ''
+})
+const phoneLogin = () => {
+  console.log('手机登录')
+}
+defineExpose({
+  phoneLogin
 })
 </script>
 <style lang="less" scoped>

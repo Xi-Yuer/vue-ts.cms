@@ -3,7 +3,7 @@ export const AccountRules = {
     {
       required: true,
       // 不符合规则的提示文字
-      message: '用户名必传',
+      message: '用户名不能为空',
       // 触发规则验证的方式
       trigger: 'blur'
     },
