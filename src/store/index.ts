@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import LoginModule from './login'
-import { IRootState, IRootModule } from './types' //state的类型
+import { IRootState } from './types' //state的类型
 
 const store = createStore<IRootState>({
   state: {
