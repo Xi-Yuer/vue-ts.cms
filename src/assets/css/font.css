@@ -1,12 +1,15 @@
 @font-face {
-  font-family: "iconfont"; /* Project id 3179038 */
-  src: url('//at.alicdn.com/t/font_3179038_rv2e04xan4h.woff2?t=1644593536243') format('woff2'),
-       url('//at.alicdn.com/t/font_3179038_rv2e04xan4h.woff?t=1644593536243') format('woff'),
-       url('//at.alicdn.com/t/font_3179038_rv2e04xan4h.ttf?t=1644593536243') format('truetype');
+  font-family: 'iconfont'; /* Project id 3179038 */
+  src: url('//at.alicdn.com/t/font_3179038_rv2e04xan4h.woff2?t=1644593536243')
+      format('woff2'),
+    url('//at.alicdn.com/t/font_3179038_rv2e04xan4h.woff?t=1644593536243')
+      format('woff'),
+    url('//at.alicdn.com/t/font_3179038_rv2e04xan4h.ttf?t=1644593536243')
+      format('truetype');
 }
 
 .iconfont {
-  font-family: "iconfont" !important;
+  font-family: 'iconfont' !important;
   font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
@@ -14,17 +17,17 @@
 }
 
 .icon-el-icon-monitor:before {
-  content: "\e6a6";
+  content: '\e6a6';
 }
 
 .icon-el-icon-goods:before {
-  content: "\e7e4";
+  content: '\e7e4';
 }
 
 .icon-el-icon-chat-line-round:before {
-  content: "\e7fd";
+  content: '\e7fd';
 }
 
 .icon-el-icon-setting:before {
-  content: "\e78e";
+  content: '\e78e';
 }

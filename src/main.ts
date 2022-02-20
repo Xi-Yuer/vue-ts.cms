@@ -7,6 +7,12 @@ import ElementPlus from 'element-plus/lib/index'
 import 'element-plus/dist/index.css'
 import 'normalize.css'
 import '@/assets/css/index.less'
+import { formatTime } from '@/utills/format-time'
 
 setupStore()
-createApp(App).use(ElementPlus).use(store).use(router).mount('#app')
+const app = createApp(App)
+app.config.globalProperties.$filters = {
+  // 时间格式化函数
+  formatTime
+}
+app.use(ElementPlus).use(store).use(router).mount('#app')

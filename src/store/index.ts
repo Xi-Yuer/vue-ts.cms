@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import LoginModule from './login'
+import systemModule from './main/system'
 import { IRootState } from './types' //state的类型
 
 const store = createStore<IRootState>({
@@ -9,7 +10,8 @@ const store = createStore<IRootState>({
   mutations: {},
   actions: {},
   modules: {
-    LoginModule
+    LoginModule,
+    systemModule
   }
 })
 export default store

@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import localCache from '@/utills/cache'
+// 当前用户角色的第一个菜单
+import { firstMenu } from '@/utills/map-menus'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -8,11 +10,18 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/login',
+    name: 'Login',
     component: () => import('@/views/login/index.vue')
   },
   {
     path: '/main',
+    name: 'Main',
     component: () => import('@/views/main/index.vue')
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import('@/views/not-found/index.vue')
   }
 ]
 
@@ -28,6 +37,9 @@ router.beforeEach((to) => {
     if (!token) {
       return '/login'
     }
+  }
+  if (to.path === '/main') {
+    return firstMenu.url
   }
 })
 export default router

@@ -5,6 +5,7 @@ import {
   UserInfoByIDRequest,
   UserMenusByRoleIDRequest
 } from '@/service/login'
+import { mapMenusToRoutes } from '@/utills/map-menus'
 import { ILoginState, ILoginModule } from './types' //该模块的state类型和module的类型
 import { IAccount } from '@/service/login/types'
 
@@ -23,15 +24,26 @@ const loginModule: Module<ILoginState, ILoginModule> = {
     changeUserInfo(state, userInfo: any) {
       state.userInfo = userInfo.data
     },
+    // 获取用户菜单
     chnageUserMenus(state, userMenus: Array<any>) {
       state.userMenus = userMenus
+
+      // 路由映射
+      const routes = mapMenusToRoutes(userMenus) // 用户所拥有的路由权限映射表对象
+
+      // 将每个路由对象添加到name为Mian的子路由中去
+      routes.forEach((route) => {
+        router.addRoute('Main', route)
+      })
+
+      // 动态获取路由，并将路由注册到router.main.children中
     }
   },
   actions: {
     async accountLoginAction({ commit }, payload: IAccount) {
       // 用户token
       const loginResult: any = await accountLoginRequest(payload)
-      const { id, token } = loginResult.data
+      const { id, token } = loginResult?.data
       localCache.setCache('TOKEN', token)
       commit('changeToken', token)
 
@@ -42,10 +54,10 @@ const loginModule: Module<ILoginState, ILoginModule> = {
 
       // 用户拥有的菜单
       const userMenusResult = await UserMenusByRoleIDRequest(
-        userInfoResult.data.role.id
+        userInfoResult?.data?.role?.id
       )
-      commit('chnageUserMenus', userMenusResult.data)
-      localCache.setCache('USER_MENUS', userMenusResult.data)
+      commit('chnageUserMenus', userMenusResult?.data)
+      localCache.setCache('USER_MENUS', userMenusResult?.data)
 
       // 登录成功，跳转首页
       router.push('/main')

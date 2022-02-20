@@ -8,7 +8,7 @@
     <el-menu
       :collapse="props.isCollaps"
       unique-opened
-      default-active="2"
+      :default-active="defaultValue"
       class="el-menu-vertical"
       background-color="#001529"
       text-color="#b7bdc3"
@@ -28,7 +28,10 @@
             </template>
             <!-- 二级菜单里的子菜单 -->
             <template v-for="subItem in item.children" :key="subItem.id">
-              <el-menu-item :index="subItem.id + ''">
+              <el-menu-item
+                :index="subItem.id + ''"
+                @click="handleItemClick(subItem)"
+              >
                 <template #title>
                   <i v-if="subItem.icon" :class="subItem.icon"></i>
                   <span>{{ subItem.name }}</span>
@@ -52,8 +55,11 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, defineProps, withDefaults } from 'vue'
+import { computed, defineProps, withDefaults, ref } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
+import { pathMapToMenu } from '@/utills/map-menus'
+
 interface PropsType {
   isCollaps: boolean
 }
@@ -62,8 +68,21 @@ const props = withDefaults(defineProps<PropsType>(), {
   isCollaps: false
 })
 
+// 路由跳转
+const router = useRouter()
+const route = useRoute()
 const store = useStore()
 const userMenus = computed(() => store.state.LoginModule.userMenus)
+// 当前路径
+const currentPath = route.path
+// 当前菜单
+const menu = pathMapToMenu(userMenus.value, currentPath)
+
+const defaultValue = ref(menu.id + '')
+
+const handleItemClick = (item: any) => {
+  router.push(item.url)
+}
 </script>
 <style lang="less" scoped>
 .nav-menu {
