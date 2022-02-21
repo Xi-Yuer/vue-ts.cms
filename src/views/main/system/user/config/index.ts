@@ -64,13 +64,17 @@ export const formConfig: IForm = {
   labelWidth: '120px',
   itemStyle: { padding: '10px 40px' }
 }
-
-export const headerConfig = [
-  { prop: 'name', label: '用户名', slotName: 'name' },
-  { prop: 'realname', label: '真实姓名', slotName: 'realname' },
-  { prop: 'cellphone', label: '手机号码', slotName: 'cellphone' },
-  { prop: 'enable', label: '状态', slotName: 'enable' },
-  { prop: 'createAt', label: '创建时间', slotName: 'createAt' },
-  { prop: 'updateAt', label: '更新时间', slotName: 'updateAt' },
-  { prop: 'operate', label: '操作', slotName: 'operate' }
-]
+export const tabelConfig = {
+  title: '用户列表',
+  headerConfig: [
+    { prop: 'name', label: '用户名', slotName: 'name' },
+    { prop: 'realname', label: '真实姓名', slotName: 'realname' },
+    { prop: 'cellphone', label: '手机号码', slotName: 'cellphone' },
+    { prop: 'enable', label: '状态', slotName: 'enable' },
+    { prop: 'createAt', label: '创建时间', slotName: 'createAt' },
+    { prop: 'updateAt', label: '更新时间', slotName: 'updateAt' },
+    { label: '操作', slotName: 'operate' }
+  ],
+  showIndexColum: true,
+  showSelectionColum: true
+}

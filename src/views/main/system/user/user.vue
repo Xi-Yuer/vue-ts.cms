@@ -2,7 +2,14 @@
 <template>
   <div class="user">
     <search :formConfig="formConfig" @changeSearchValue="changeSearchValue" />
-    <Table :dataList="userList" :headerList="headerConfig">
+    <Table
+      :dataList="userList"
+      :title="tabelConfig.title"
+      :headerList="tabelConfig.headerConfig"
+      :showIndexColum="tabelConfig.showIndexColum"
+      :showSelectionColum="tabelConfig.showSelectionColum"
+      @SelectionChange="handleSelectionChange"
+    >
       <template #enable="scope">
         <el-button
           :type="scope.row ? 'primary' : 'danger'"
@@ -22,12 +29,20 @@
         }}</el-link>
       </template>
       <template #operate>
-        <el-button type="primary" plain size="small"
-          ><el-icon><edit /></el-icon>修改</el-button
-        >
-        <el-button type="danger" plain size="small"
-          ><el-icon><delete-filled /></el-icon>删除</el-button
-        >
+        <el-button type="primary" plain size="small">
+          <el-icon><edit /></el-icon>修改
+        </el-button>
+        <el-button type="danger" plain size="small">
+          <el-icon><delete-filled /></el-icon>删除
+        </el-button>
+      </template>
+      <template #header-handler>
+        <el-button type="primary">
+          <el-icon><refresh-right /></el-icon>刷新
+        </el-button>
+        <el-button type="primary">
+          <el-icon><plus /></el-icon>新建
+        </el-button>
       </template>
     </Table>
   </div>
@@ -36,12 +51,12 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
-import { Edit, DeleteFilled } from '@element-plus/icons-vue'
+import { Edit, DeleteFilled, Plus, RefreshRight } from '@element-plus/icons-vue'
 
 import Search from '@/components/page-search'
 import Table from '@/base-ui/table'
 
-import { formConfig, headerConfig } from './config'
+import { formConfig, tabelConfig } from './config'
 
 const store = useStore()
 // 请求页面数据
@@ -59,6 +74,10 @@ const userList = computed(() => store.state.systemModule.userList)
 const searchValue = ref({})
 const changeSearchValue = (newValue) => {
   searchValue.value = newValue
+}
+
+const handleSelectionChange = (value) => {
+  console.log(value)
 }
 </script>
 <style lang="less" scoped></style>
