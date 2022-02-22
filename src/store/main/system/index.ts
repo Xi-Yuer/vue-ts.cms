@@ -8,20 +8,24 @@ import { getPageListData } from '@/service/main/system'
 const systemModule: Module<ISystemState, IRootState> = {
   namespaced: true,
   state: {
-    userList: [],
-    userCount: []
+    usersList: [],
+    roleList: [],
+    usersCount: 0,
+    roleCount: 0
   },
   mutations: {
-    chnageUserList(state, payload) {
-      state.userList = payload.list
-      state.userCount = payload.totalCount
+    chageState(state, { data, stateName }) {
+      ;(state as any)[`${stateName}List`] = data.list
+      ;(state as any)[`${stateName}Count`] = data.totalCount
     }
   },
   actions: {
-    async getPageListAction({ commit }, { pageUrl, queryInfo }) {
+    async getPageListAction({ commit }, { pageName, queryInfo }) {
+      const pageUrl = `/${pageName}/list`
       // 发送网络请求
       const pageResult: any = await getPageListData(pageUrl, queryInfo)
-      commit('chnageUserList', pageResult.data)
+
+      commit('chageState', { data: pageResult.data, stateName: pageName })
     }
   }
 }

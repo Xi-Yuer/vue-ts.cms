@@ -3,32 +3,32 @@
   <div class="table">
     <div class="header">
       <slot name="header">
-        <div class="title">{{ props.title }}</div>
+        <div class="title">{{ title }}</div>
         <div class="handler">
           <slot name="header-handler"></slot>
         </div>
       </slot>
     </div>
     <el-table
-      :data="props.dataList"
+      :data="dataList"
       border
       style="width: 100%"
       @selection-change="handleSelectionChange"
     >
       <!-- 显示序号 -->
       <el-table-column
-        v-if="props.showSelectionColum"
+        v-if="showSelectionColum"
         type="selection"
         align="center"
       ></el-table-column>
       <el-table-column
-        v-if="props.showIndexColum"
+        v-if="showIndexColum"
         type="index"
         label="序号"
         align="center"
         width="80"
       ></el-table-column>
-      <template v-for="headerItem in props.headerList" :key="headerItem.prop">
+      <template v-for="headerItem in headerList" :key="headerItem.prop">
         <el-table-column v-bind="headerItem" align="center">
           <template #default="scope">
             <slot :name="headerItem.slotName" :row="scope.row[headerItem.prop]">
@@ -41,16 +41,9 @@
     <div class="footer">
       <slot name="footer">
         <el-pagination
-          v-model:currentPage="currentPage4"
-          v-model:page-size="pageSize4"
-          :page-sizes="[100, 200, 300, 400]"
-          :small="small"
-          :disabled="disabled"
-          :background="background"
+          :page-sizes="[10, 20, 30]"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="400"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
+          :total="DataCount"
         >
         </el-pagination>
       </slot>
@@ -68,14 +61,16 @@ interface Props {
   showIndexColum: boolean
   showSelectionColum: boolean
   title: string
+  DataCount: number
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   dataList: () => [],
   headerList: () => [],
   showIndexColum: false,
   showSelectionColum: false,
-  title: ''
+  title: '',
+  DataCount: 0
 })
 // 选择
 const handleSelectionChange = (value: any) => {

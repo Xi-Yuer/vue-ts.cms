@@ -3,9 +3,9 @@ const searchConfig: IFormItem[] = [
   {
     field: 'id',
     type: 'input',
-    label: 'id',
+    label: '用户ID',
     rules: [],
-    placeholder: 'id'
+    placeholder: '用户ID'
   },
   {
     field: 'name',
@@ -15,31 +15,38 @@ const searchConfig: IFormItem[] = [
     placeholder: '用户名'
   },
   {
-    field: 'password',
-    type: 'password',
-    label: '密码',
+    field: 'realname',
+    type: 'input',
+    label: '真实姓名',
     rules: [],
-    placeholder: '密码'
+    placeholder: '真实姓名'
   },
   {
-    field: 'gender',
-    type: 'select',
-    label: '性别',
+    field: 'cellphone',
+    type: 'input',
+    label: '手机号',
     rules: [],
-    placeholder: '性别',
+    placeholder: '手机号'
+  },
+  {
+    field: 'enable',
+    type: 'select',
+    label: '用户状态',
+    rules: [],
+    placeholder: '用户状态',
     options: [
       {
-        title: '男',
-        value: '男'
+        title: '启用',
+        value: 1
       },
       {
-        title: '女',
-        value: '女'
+        title: '禁用',
+        value: 0
       }
     ]
   },
   {
-    field: 'createTime',
+    field: 'createAt',
     type: 'datepicker',
     label: '时间',
     rules: [],
@@ -67,6 +74,7 @@ export const formConfig: IForm = {
 export const tabelConfig = {
   title: '用户列表',
   headerConfig: [
+    { prop: 'id', label: '用户ID', slotName: 'id' },
     { prop: 'name', label: '用户名', slotName: 'name' },
     { prop: 'realname', label: '真实姓名', slotName: 'realname' },
     { prop: 'cellphone', label: '手机号码', slotName: 'cellphone' },

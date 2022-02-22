@@ -54,7 +54,14 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, withDefaults, ref, watch, defineEmits } from 'vue'
+import {
+  defineProps,
+  withDefaults,
+  ref,
+  watch,
+  defineEmits,
+  defineExpose
+} from 'vue'
 import { IFormItem } from './types'
 
 export interface PropsType {
@@ -91,6 +98,13 @@ watch(
     deep: true
   }
 )
+// 重置函数
+const handleRefresh = () => {
+  formDate.value = {}
+}
+defineExpose({
+  handleRefresh
+})
 </script>
 <style lang="less" scoped>
 .form {

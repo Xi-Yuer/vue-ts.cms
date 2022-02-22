@@ -2,7 +2,7 @@
 <template>
   <div class="nav-breadcrumb">
     <el-breadcrumb :separator-icon="ArrowRight">
-      <template v-for="breadcrumb in props.breadcrumbs" :key="breadcrumb.name">
+      <template v-for="breadcrumb in breadcrumbs" :key="breadcrumb.name">
         <el-breadcrumb-item :to="{ path: breadcrumb.path }">{{
           breadcrumb.name
         }}</el-breadcrumb-item>
@@ -20,7 +20,7 @@ interface Props {
   breadcrumbs: IBreadcrumb[]
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   breadcrumbs: () => []
 })
 </script>
