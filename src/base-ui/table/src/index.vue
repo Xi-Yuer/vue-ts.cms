@@ -14,6 +14,7 @@
       border
       style="width: 100%"
       @selection-change="handleSelectionChange"
+      v-bind="chidrenProps"
     >
       <!-- 显示序号 -->
       <el-table-column
@@ -29,7 +30,11 @@
         width="80"
       ></el-table-column>
       <template v-for="headerItem in headerList" :key="headerItem.prop">
-        <el-table-column v-bind="headerItem" align="center">
+        <el-table-column
+          v-bind="headerItem"
+          align="center"
+          show-overflow-tooltip
+        >
           <template #default="scope">
             <slot :name="headerItem.slotName" :row="scope.row[headerItem.prop]">
               {{ scope.row[headerItem.prop] }}
@@ -38,10 +43,15 @@
         </el-table-column>
       </template>
     </el-table>
-    <div class="footer">
+    <div class="footer" v-if="showFooter">
       <slot name="footer">
         <el-pagination
-          :page-sizes="[10, 20, 30]"
+          small
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="page.currentPage"
+          :page-size="page.pageSize"
+          :page-sizes="[5, 10, 15, 20]"
           layout="total, sizes, prev, pager, next, jumper"
           :total="DataCount"
         >
@@ -53,7 +63,7 @@
 
 <script lang="ts" setup>
 import { defineProps, withDefaults, defineEmits } from 'vue'
-const emit = defineEmits(['SelectionChange'])
+const emit = defineEmits(['SelectionChange', 'update:page'])
 
 interface Props {
   dataList: any[]
@@ -61,20 +71,33 @@ interface Props {
   showIndexColum: boolean
   showSelectionColum: boolean
   title: string
+  showFooter: boolean
   DataCount: number
+  page: any
+  chidrenProps: any
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   dataList: () => [],
   headerList: () => [],
   showIndexColum: false,
   showSelectionColum: false,
   title: '',
-  DataCount: 0
+  showFooter: true,
+  DataCount: 0,
+  page: () => ({ currentPage: 0, pageSize: 10 }),
+  chidrenProps: () => ({})
 })
 // 选择
 const handleSelectionChange = (value: any) => {
   emit('SelectionChange', value)
+}
+// 分页器
+const handleCurrentChange = (currentPage: number) => {
+  emit('update:page', { ...props.page, currentPage })
+}
+const handleSizeChange = (pageSize: number) => {
+  emit('update:page', { ...props.page, pageSize })
 }
 </script>
 <style lang="less" scoped>

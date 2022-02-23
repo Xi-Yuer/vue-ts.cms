@@ -5,7 +5,7 @@ import {
   UserInfoByIDRequest,
   UserMenusByRoleIDRequest
 } from '@/service/login'
-import { mapMenusToRoutes } from '@/utills/map-menus'
+import { mapMenusToRoutes, mapMenusToPermissions } from '@/utills/map-menus'
 import { ILoginState, ILoginModule } from './types' //该模块的state类型和module的类型
 import { IAccount } from '@/service/login/types'
 
@@ -15,7 +15,8 @@ const loginModule: Module<ILoginState, ILoginModule> = {
   state: {
     token: '',
     userInfo: {},
-    userMenus: []
+    userMenus: [],
+    userPermission: []
   },
   mutations: {
     changeToken(state, token: string) {
@@ -27,6 +28,8 @@ const loginModule: Module<ILoginState, ILoginModule> = {
     // 获取用户菜单
     chnageUserMenus(state, userMenus: Array<any>) {
       state.userMenus = userMenus
+      // 该角色拥有的权限
+      state.userPermission = mapMenusToPermissions(userMenus)
 
       // 路由映射
       const routes = mapMenusToRoutes(userMenus) // 用户所拥有的路由权限映射表对象

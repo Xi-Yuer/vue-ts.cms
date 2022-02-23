@@ -10,8 +10,14 @@ const systemModule: Module<ISystemState, IRootState> = {
   state: {
     usersList: [],
     roleList: [],
+    goodsList: [],
+    menuList: [],
+    categoryList: [],
     usersCount: 0,
-    roleCount: 0
+    roleCount: 0,
+    goodsCount: 0,
+    menuCount: 0,
+    categoryCount: 0
   },
   mutations: {
     chageState(state, { data, stateName }) {

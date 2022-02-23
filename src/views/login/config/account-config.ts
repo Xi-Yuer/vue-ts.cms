@@ -8,7 +8,7 @@ export const AccountRules = {
       trigger: 'blur'
     },
     {
-      pattern: /^[a-z0-9A-Z]{5,10}$/,
+      pattern: /^[a-z0-9A-Z]{3,10}$/,
       message: '用户名必须是5-10个字母或数字',
       trigger: 'blur'
     }
