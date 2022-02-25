@@ -19,19 +19,25 @@
     </template>
     <template #createAt="scope">
       <el-link type="warning" :underline="false">{{
-        $filters.formatTime(scope.row)
+        $filters.formatTime(scope.row.createAt)
       }}</el-link>
     </template>
     <template #updateAt="scope">
       <el-link type="warning" :underline="false">{{
-        $filters.formatTime(scope.row)
+        $filters.formatTime(scope.row.updateAt)
       }}</el-link>
     </template>
-    <template #operate>
+    <template #operate="scope">
       <el-button type="primary" plain size="small" :disabled="!isUpdate">
         <el-icon><edit /></el-icon>修改
       </el-button>
-      <el-button type="danger" plain size="small" :disabled="!isDelete">
+      <el-button
+        type="danger"
+        plain
+        size="small"
+        :disabled="!isDelete"
+        @click="handleDeleteCilck(scope.row)"
+      >
         <el-icon><delete-filled /></el-icon>删除
       </el-button>
     </template>
@@ -86,9 +92,11 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 // 双向绑定pageInfo
-const pageInfo = ref({ currentPage: 0, pageSize: 10 })
+const pageInfo = ref({ currentPage: 1, pageSize: 10 })
 // 监听到分页器数据改变去再去请求数据
-watch(pageInfo, () => getPageData())
+watch(pageInfo, () => {
+  getPageData()
+})
 const store = useStore()
 // 请求页面数据
 const getPageData = (query: any = {}) => {
@@ -96,7 +104,7 @@ const getPageData = (query: any = {}) => {
   store.dispatch('systemModule/getPageListAction', {
     pageName: props.pageName,
     queryInfo: {
-      offset: pageInfo.value.currentPage * pageInfo.value.pageSize,
+      offset: (pageInfo.value.currentPage - 1) * pageInfo.value.pageSize,
       size: pageInfo.value.pageSize,
       ...query
     }
@@ -123,6 +131,16 @@ const otherPropSlot = props.tabelConfig?.headerConfig.filter(
   }
 )
 
+// 删除
+const handleDeleteCilck = (item: any) => {
+  store.dispatch('systemModule/deletePageDataAction', {
+    pageName: 'users',
+    id: item.id,
+    query: pageInfo.value
+  })
+}
+
+// 选择
 const handleSelectionChange = (value) => {
   console.log(value)
 }

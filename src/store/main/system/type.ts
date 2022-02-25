@@ -4,6 +4,7 @@ export interface ISystemState {
   goodsList: any[]
   menuList: any[]
   categoryList: any[]
+  searchValue: any
   usersCount: number
   roleCount: number
   goodsCount: number

@@ -36,7 +36,7 @@
           show-overflow-tooltip
         >
           <template #default="scope">
-            <slot :name="headerItem.slotName" :row="scope.row[headerItem.prop]">
+            <slot :name="headerItem.slotName" :row="scope.row">
               {{ scope.row[headerItem.prop] }}
             </slot>
           </template>

@@ -62,6 +62,7 @@ import {
   defineEmits,
   defineExpose
 } from 'vue'
+import { useStore } from 'vuex'
 import { IFormItem } from './types'
 
 export interface PropsType {
@@ -87,12 +88,14 @@ const props = withDefaults(defineProps<PropsType>(), {
 })
 
 const emit = defineEmits(['modelValue'])
+const store = useStore()
 const formDate = ref({})
 // 当数据发生改变时将组件中的数据传递出去
 watch(
   formDate,
   (newValue) => {
     emit('modelValue', newValue)
+    store.dispatch('systemModule/searchValueChange', newValue)
   },
   {
     deep: true

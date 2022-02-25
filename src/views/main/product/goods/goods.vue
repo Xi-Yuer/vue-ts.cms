@@ -11,16 +11,18 @@
     ref="pageContentRef"
   >
     <template #newPrice="scope">
-      <el-icon color="red"><price-tag /></el-icon>{{ `￥${scope.row}` }}
+      <el-icon color="red"><price-tag /></el-icon
+      >{{ `￥${scope.row.newPrice}` }}
     </template>
     <template #oldPrice="scope">
-      <el-icon color="#66b1ff"><price-tag /></el-icon>{{ `￥${scope.row}` }}
+      <el-icon color="#66b1ff"><price-tag /></el-icon
+      >{{ `￥${scope.row.oldPrice}` }}
     </template>
     <template #imgUrl="scope">
       <el-image
         style="width: 80px; height: 100px; position: relative"
-        :preview-src-list="[scope.row]"
-        :src="scope.row"
+        :preview-src-list="[scope.row.imgUrl]"
+        :src="scope.row.imgUrl"
         fit="contain"
       >
       </el-image>

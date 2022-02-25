@@ -6,3 +6,10 @@ export function getPageListData(url: string, qureyInfo: any) {
     data: qureyInfo
   })
 }
+
+// url:/users/id
+export function deletePageData(url: string) {
+  return Request.delete<any>({
+    url
+  })
+}
