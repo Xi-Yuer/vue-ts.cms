@@ -12,6 +12,7 @@
               :label="item.label"
               :rules="item.rules"
               :style="itemStyle"
+              v-if="!item.isHidden"
             >
               <template
                 v-if="item.type === 'input' || item.type === 'password'"
@@ -84,12 +85,14 @@ const props = withDefaults(defineProps<PropsType>(), {
     sm: 24,
     xs: 24
   }),
-  modelValue: () => ({})
+  modelValue: () => ({}),
+  formData: () => ({})
 })
 
 const emit = defineEmits(['modelValue'])
 const store = useStore()
-const formDate = ref({})
+const formDate = ref({ ...props.modelValue })
+
 // 当数据发生改变时将组件中的数据传递出去
 watch(
   formDate,

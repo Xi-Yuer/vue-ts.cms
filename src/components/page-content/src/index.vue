@@ -28,8 +28,14 @@
       }}</el-link>
     </template>
     <template #operate="scope">
-      <el-button type="primary" plain size="small" :disabled="!isUpdate">
-        <el-icon><edit /></el-icon>修改
+      <el-button
+        type="primary"
+        plain
+        size="small"
+        :disabled="!isUpdate"
+        @click="handleEditBtnClick(scope.row)"
+      >
+        <el-icon><edit /></el-icon>编辑
       </el-button>
       <el-button
         type="danger"
@@ -45,7 +51,11 @@
       <el-button type="primary">
         <el-icon><refresh-right /></el-icon>刷新
       </el-button>
-      <el-button type="primary" :disabled="!isCreate">
+      <el-button
+        type="primary"
+        :disabled="!isCreate"
+        @click="handleNewBtnClick"
+      >
         <el-icon><plus /></el-icon>新建
       </el-button>
     </template>
@@ -72,9 +82,11 @@ import {
   watch
 } from 'vue'
 import { useStore } from 'vuex'
+import { defineEmits } from 'vue'
 import { Edit, DeleteFilled, Plus, RefreshRight } from '@element-plus/icons-vue'
 import Table from '@/base-ui/table'
 import { usePermission } from '@/hooks/usePermission'
+const emit = defineEmits(['NewBtnClick', 'EditBtnClick'])
 
 // 权限判断
 const isCreate = usePermission(props.pageName, 'create')
@@ -138,6 +150,15 @@ const handleDeleteCilck = (item: any) => {
     id: item.id,
     query: pageInfo.value
   })
+}
+// 新建点击
+const handleNewBtnClick = () => {
+  emit('NewBtnClick')
+}
+
+// 编辑
+const handleEditBtnClick = (item: any) => {
+  emit('EditBtnClick', item)
 }
 
 // 选择

@@ -3,9 +3,9 @@ const searchConfig: IFormItem[] = [
   {
     field: 'name',
     type: 'input',
-    label: '权限名称',
+    label: '角色名称',
     rules: [],
-    placeholder: '权限名称'
+    placeholder: '角色名称'
   },
   {
     field: 'intro',

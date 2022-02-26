@@ -13,3 +13,18 @@ export function deletePageData(url: string) {
     url
   })
 }
+
+// 创建用户/角色...
+export function createPageData(url: string, queryInfo: any) {
+  return Request.post<any>({
+    url,
+    data: queryInfo
+  })
+}
+// 编辑用户/角色..
+export function editPageData(url: string, queryInfo: any) {
+  return Request.patch<any>({
+    url,
+    data: queryInfo
+  })
+}
