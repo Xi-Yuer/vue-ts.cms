@@ -7,11 +7,11 @@ export const tabelConfig = {
     { prop: 'icon', label: '图标', slotName: 'icon' },
     { prop: 'permission', label: '权限', slotName: 'permission' },
     { prop: 'createAt', label: '创建时间', slotName: 'createAt' },
-    { prop: 'updateAt', label: '更新时间', slotName: 'updateAt' },
-    { label: '操作', slotName: 'operate' }
+    { prop: 'updateAt', label: '更新时间', slotName: 'updateAt' }
   ],
   showIndexColum: false,
   showSelectionColum: false,
+  isShowAddBtn: true,
   showFooter: false,
   chidrenProps: {
     rowKey: 'id',

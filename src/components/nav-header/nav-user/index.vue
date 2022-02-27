@@ -25,10 +25,13 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { User, Setting, RemoveFilled } from '@element-plus/icons-vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+import LocaCache from '@/utills/cache'
+import { User, Setting, RemoveFilled } from '@element-plus/icons-vue'
 
 const store = useStore()
+const router = useRouter()
 const name = computed(() => store.state.LoginModule.userInfo.name)
 const avatarURL =
   'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
@@ -37,7 +40,8 @@ const toUserInfo = () => {
   console.log('用户信息')
 }
 const signOut = () => {
-  console.log('退出登录')
+  LocaCache.deleteCache('TOKEN')
+  router.push('/main')
 }
 </script>
 <style lang="less" scoped>

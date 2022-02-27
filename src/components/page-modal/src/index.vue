@@ -10,6 +10,7 @@
       destroy-on-close
     >
       <Form v-bind="modalConfig" v-model="formData"></Form>
+      <slot></slot>
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="dialogVisible = false">取消</el-button>
@@ -30,7 +31,8 @@ import Form from '@/base-ui/form'
 const props = defineProps({
   modalConfig: Object,
   EditItemData: Object,
-  pageName: String
+  pageName: String,
+  otherInfo: Object
 })
 
 const formData = ref<any>({})
@@ -54,16 +56,27 @@ const handleConfirmBtnClick = () => {
   dialogVisible.value = false
   if (Object.keys(props.EditItemData).length) {
     // 编辑
+    const newEditItemData = props.EditItemData
+    delete newEditItemData.createAt
+    delete newEditItemData.updateAt
     store.dispatch('systemModule/editPageDataAction', {
       pageName: props.pageName,
-      editInfo: { ...store.state.systemModule.searchValue },
+      editInfo: {
+        ...newEditItemData,
+        ...store.state.systemModule.searchValue,
+        ...props.otherInfo
+      },
       id: props.EditItemData.id
     })
   } else {
     //新建
     store.dispatch('systemModule/createPageDataAction', {
       pageName: props.pageName,
-      data: { ...store.state.systemModule.searchValue }
+      data: {
+        ...store.state.systemModule.searchValue,
+        ...props.EditItemData,
+        ...props.otherInfo
+      }
     })
   }
 }

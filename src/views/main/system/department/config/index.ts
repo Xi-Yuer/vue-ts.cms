@@ -55,7 +55,7 @@ export const formConfig: IForm = {
   itemStyle: { padding: '10px 40px' }
 }
 export const tabelConfig = {
-  title: '用户列表',
+  title: '部门列表',
   headerConfig: [
     { prop: 'id', label: '用户ID', slotName: 'id' },
     { prop: 'name', label: '用户名', slotName: 'name' },
@@ -66,4 +66,24 @@ export const tabelConfig = {
   ],
   showIndexColum: true,
   showSelectionColum: true
+}
+
+export const modalConfig = {
+  formItem: [
+    {
+      field: 'name',
+      type: 'input',
+      label: '用户名',
+      rules: [],
+      placeholder: '用户名'
+    },
+    {
+      field: 'leader',
+      type: 'input',
+      label: '部门领导',
+      rules: [],
+      placeholder: '部门领导'
+    }
+  ],
+  colLayout: { span: 24 }
 }

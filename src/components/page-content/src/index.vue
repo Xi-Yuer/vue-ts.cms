@@ -48,15 +48,13 @@
       </el-button>
     </template>
     <template #header-handler>
-      <el-button type="primary">
-        <el-icon><refresh-right /></el-icon>刷新
-      </el-button>
       <el-button
+        v-if="!tabelConfig.isShowAddBtn"
         type="primary"
         :disabled="!isCreate"
         @click="handleNewBtnClick"
-      >
-        <el-icon><plus /></el-icon>新建
+        :icon="Plus"
+        >新建
       </el-button>
     </template>
     <!-- 在page-content中动态插入剩余的插槽 -->
@@ -83,7 +81,7 @@ import {
 } from 'vue'
 import { useStore } from 'vuex'
 import { defineEmits } from 'vue'
-import { Edit, DeleteFilled, Plus, RefreshRight } from '@element-plus/icons-vue'
+import { Edit, DeleteFilled, Plus } from '@element-plus/icons-vue'
 import Table from '@/base-ui/table'
 import { usePermission } from '@/hooks/usePermission'
 const emit = defineEmits(['NewBtnClick', 'EditBtnClick'])
@@ -146,7 +144,7 @@ const otherPropSlot = props.tabelConfig?.headerConfig.filter(
 // 删除
 const handleDeleteCilck = (item: any) => {
   store.dispatch('systemModule/deletePageDataAction', {
-    pageName: 'users',
+    pageName: props.pageName,
     id: item.id,
     query: pageInfo.value
   })

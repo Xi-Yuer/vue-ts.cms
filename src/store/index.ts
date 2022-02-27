@@ -9,7 +9,8 @@ const store = createStore<IRootState>({
   state: {
     root: '',
     entireDepartment: [],
-    entireRole: []
+    entireRole: [],
+    entireMenu: []
   },
   mutations: {
     chnageDepartmentList(state, payload) {
@@ -17,6 +18,9 @@ const store = createStore<IRootState>({
     },
     chnageRoleList(state, payload) {
       state.entireRole = payload
+    },
+    chnageMenuList(state, payload) {
+      state.entireMenu = payload
     }
   },
   actions: {
@@ -30,10 +34,14 @@ const store = createStore<IRootState>({
         offset: 0,
         size: 100
       })
+      // 请求菜单数据
+      const menuResult: any = await getPageListData('/menu/list', {})
       const { list: departmentList } = departmentResult.data
       const { list: roleList } = roleResult.data
+      const { list: menuList } = menuResult.data
       commit('chnageDepartmentList', departmentList)
       commit('chnageRoleList', roleList)
+      commit('chnageMenuList', menuList)
     }
   },
   modules: {
@@ -46,5 +54,4 @@ export default store
 // 用户刷新store初始化函数(该函数在main.ts模块中调用)
 export function setupStore(): void {
   store.dispatch('LoginModule/loadLocalLoginAction')
-  store.dispatch('getInitialData')
 }

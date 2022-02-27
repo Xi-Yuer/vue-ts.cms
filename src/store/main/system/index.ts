@@ -48,11 +48,13 @@ const systemModule: Module<ISystemState, IRootState> = {
       commit('changeSearchValue', payload)
     },
     // 删除数据
-    async deletePageDataAction({ state, dispatch }, payload: any) {
+    async deletePageDataAction({ state, dispatch, commit }, payload: any) {
       // 获取pageName和id ===> /users/1
       const { pageName, id } = payload
       const pageUrl = `/${pageName}/${id}`
+
       await deletePageData(pageUrl)
+      commit('changeSearchValue', {})
       // 删除数据之后再次请求一遍数据用于更新页面
       dispatch('getPageListAction', {
         pageName,
