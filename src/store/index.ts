@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import LoginModule from './login'
 import systemModule from './main/system'
+import dashboardModule from './main/analysis'
 import { IRootState } from './types' //state的类型
 
 import { getPageListData } from '@/service/main/system'
@@ -46,7 +47,8 @@ const store = createStore<IRootState>({
   },
   modules: {
     LoginModule,
-    systemModule
+    systemModule,
+    dashboardModule
   }
 })
 export default store

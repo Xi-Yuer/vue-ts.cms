@@ -19,6 +19,9 @@ import { ref, defineEmits, computed } from 'vue'
 import { Fold, Expand } from '@element-plus/icons-vue'
 import { pathMapBreadcrumbs } from '@/utills/map-menus'
 
+// import { useEcharts } from '@/base-ui/echart/hooks/useEcharts'
+// const { setResize } = useEcharts()
+
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
 const store = useStore()
@@ -34,6 +37,7 @@ const emits = defineEmits(['foldChange'])
 const handleFoldChange = () => {
   isFold.value = !isFold.value
   emits('foldChange', isFold.value)
+  // setResize()
 }
 
 // 面包屑数据 [{name:xxx,path:xxx},{name:xxx,path:xxx}]

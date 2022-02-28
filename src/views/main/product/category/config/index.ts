@@ -52,3 +52,16 @@ export const tabelConfig = {
   showIndexColum: true,
   showSelectionColum: true
 }
+
+export const modalConfig = {
+  formItem: [
+    {
+      field: 'name',
+      type: 'input',
+      label: '类别',
+      rules: [],
+      placeholder: '类别'
+    }
+  ],
+  colLayout: { span: 24 }
+}

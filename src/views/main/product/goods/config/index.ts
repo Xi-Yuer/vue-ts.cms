@@ -8,13 +8,6 @@ const searchConfig: IFormItem[] = [
     placeholder: '商品ID'
   },
   {
-    field: 'address',
-    type: 'input',
-    label: '地址',
-    rules: [],
-    placeholder: '地址'
-  },
-  {
     field: 'status',
     type: 'select',
     label: '商品状态',
@@ -75,4 +68,97 @@ export const tabelConfig = {
   ],
   showIndexColum: true,
   showSelectionColum: true
+}
+
+export const modalConfig = {
+  formItem: [
+    {
+      field: 'desc',
+      type: 'input',
+      label: '描述',
+      rules: [],
+      placeholder: '描述'
+    },
+    {
+      field: 'name',
+      type: 'input',
+      label: '名字',
+      rules: [],
+      placeholder: '名字'
+    },
+    {
+      field: 'newPrice',
+      type: 'input',
+      label: '现价',
+      rules: [],
+      placeholder: '现价'
+    },
+    {
+      field: 'oldPrice',
+      type: 'input',
+      label: '原价',
+      rules: [],
+      placeholder: '原价'
+    },
+    {
+      field: 'address',
+      type: 'input',
+      label: '生产地址',
+      rules: [],
+      placeholder: '生产地址'
+    },
+    {
+      field: 'imgUrl',
+      type: 'input',
+      label: '图片地址',
+      rules: [],
+      placeholder: '图片地址'
+    },
+    {
+      field: 'address',
+      type: 'input',
+      label: '地址',
+      rules: [],
+      placeholder: '地址'
+    },
+    {
+      field: 'favorCount',
+      type: 'input',
+      label: '收藏',
+      rules: [],
+      placeholder: '收藏'
+    },
+    {
+      field: 'inventoryCount',
+      type: 'input',
+      label: '库存',
+      rules: [],
+      placeholder: '库存'
+    },
+    {
+      field: 'saleCount',
+      type: 'input',
+      label: '销量',
+      rules: [],
+      placeholder: '销量'
+    },
+    {
+      field: 'status',
+      type: 'select',
+      label: '状态',
+      rules: [],
+      placeholder: '状态',
+      options: [
+        {
+          title: '启用',
+          value: 1
+        },
+        {
+          title: '禁用',
+          value: 0
+        }
+      ]
+    }
+  ],
+  colLayout: { span: 24 }
 }

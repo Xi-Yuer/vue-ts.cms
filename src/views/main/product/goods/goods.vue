@@ -9,6 +9,8 @@
     :tabelConfig="tabelConfig"
     pageName="goods"
     ref="pageContentRef"
+    @newBtnClick="handelNewBtnClick"
+    @EditBtnClick="handleEditBtnClick"
   >
     <template #newPrice="scope">
       <el-icon color="red"><price-tag /></el-icon
@@ -28,15 +30,30 @@
       </el-image>
     </template>
   </page-conntent>
+  <page-modal
+    :modalConfig="modalConfig"
+    :EditItemData="EditItemData"
+    pageName="goods"
+    :otherInfo="otherInfo"
+    ref="pageModalRef"
+  >
+  </page-modal>
 </template>
 
 <script lang="ts" setup>
 import { PriceTag } from '@element-plus/icons-vue'
+
 import { usePageSearch } from '@/hooks/usePageSearch'
+import { usePageModal } from '@/hooks/usePageModal'
+
 import PageSearch from '@/components/page-search'
 import PageConntent from '@/components/page-content'
-import { formConfig, tabelConfig } from './config'
+import PageModal from '@/components/page-modal'
+
+import { formConfig, tabelConfig, modalConfig } from './config'
 // hooks
 const [changeSearchValue, pageContentRef, handleSearch] = usePageSearch()
+const [pageModalRef, EditItemData, handelNewBtnClick, handleEditBtnClick] =
+  usePageModal() // 编辑/新建
 </script>
 <style lang="less" scoped></style>
