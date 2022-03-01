@@ -30,7 +30,10 @@
           ><pie-echarts :pieData="pieData"></pie-echarts
         ></card>
       </el-col>
-      <el-col :span="10"><card title="商品城市销量"></card></el-col>
+      <el-col :span="10"
+        ><card title="商品城市销量"
+          ><map-echarts :mapData="addressGoodsSale"></map-echarts></card
+      ></el-col>
       <el-col :span="7"
         ><card title="商品分类数量(玫瑰图)"
           ><rose-echarts :roseData="pieData"></rose-echarts></card
@@ -58,7 +61,8 @@ import {
   PieEcharts,
   RoseEcharts,
   LineEcharts,
-  BarEcharts
+  BarEcharts,
+  MapEcharts
 } from '@/components/page-echarts'
 
 const store = useStore()
@@ -94,6 +98,15 @@ const barData = computed(() => {
 })
 const Data = computed(() => {
   return store.state.dashboardModule.goodsDataResult
+})
+
+const addressGoodsSale = computed(() => {
+  return store.state.dashboardModule.adressGoodsSale.map((item) => {
+    return {
+      name: item.address,
+      value: item.count
+    }
+  })
 })
 </script>
 <style lang="less" scoped>

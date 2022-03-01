@@ -8,26 +8,31 @@ enum DashBoardAPI {
 
 export const getCategoryGoodsCount = () => {
   return Request.get<any>({
-    url: DashBoardAPI.categoryGoodsCount
+    url: DashBoardAPI.categoryGoodsCount,
+    showLoading: true
   })
 }
 export const getCategoryGoodsSale = () => {
   return Request.get<any>({
-    url: DashBoardAPI.categoryGoodsSale
+    url: DashBoardAPI.categoryGoodsSale,
+    showLoading: true
   })
 }
 export const getCategoryGoodsFavor = () => {
   return Request.get<any>({
-    url: DashBoardAPI.categoryGoodsFavor
+    url: DashBoardAPI.categoryGoodsFavor,
+    showLoading: true
   })
 }
 export const getAddressGoodsSale = () => {
   return Request.get<any>({
-    url: DashBoardAPI.adressGoodsSale
+    url: DashBoardAPI.adressGoodsSale,
+    showLoading: true
   })
 }
 export const getCategoryGoodsData = () => {
   return Request.get<any>({
-    url: '/goods/amount/list'
+    url: '/goods/amount/list',
+    showLoading: true
   })
 }

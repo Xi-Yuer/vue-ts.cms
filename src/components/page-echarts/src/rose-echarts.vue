@@ -25,20 +25,20 @@ const options = computed(() => ({
   tooltip: {
     trigger: 'item'
   },
-  toolbox: {
-    show: true,
-    feature: {
-      mark: { show: true },
-      dataView: { show: true, readOnly: false },
-      restore: { show: true },
-      saveAsImage: { show: true }
-    }
-  },
+  // toolbox: {
+  //   show: true,
+  //   feature: {
+  //     mark: { show: true },
+  //     dataView: { show: true, readOnly: false },
+  //     restore: { show: true },
+  //     saveAsImage: { show: true }
+  //   }
+  // },
   series: [
     {
       name: '商品数量',
       type: 'pie',
-      radius: [20, 100],
+      radius: [20, 150],
       center: ['50%', '50%'],
       roseType: 'area',
       itemStyle: {

@@ -10,3 +10,5 @@ declare const BASE_URL: string
 declare const VUE_APP_BASE_URL: string
 
 // declare const $store:any
+
+declare module '*.json'
